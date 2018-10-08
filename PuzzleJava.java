@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Random;
 
 public class PuzzleJava {
     public ArrayList<Integer> greaterThan10(int[] anArray) {
@@ -39,6 +40,45 @@ public class PuzzleJava {
             }
         }
     }
+    public int[] randomTenNum() {
+        Random r = new Random();
+        int[] result = new int[10];
+        for (int i = 0; i < 10; i++) {
+            result[i] = 55 + r.nextInt(46);
+        }
+        return result;
+    }
+    public ArrayList<Integer> randomSortedTenNum() {
+        Random r = new Random();
+        Integer min = 73;
+        Integer max = 73;
+        int randNum;
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        for (int i = 0; i < 10; i++) {
+            randNum = 55 + r.nextInt(46);
+            result.add(randNum);
+            if (randNum > max) {
+                max = randNum;
+            }
+            if (randNum < min) {
+                min = randNum;
+            }
+        }
+        System.out.println("Minimum: " + min);
+        System.out.println("Maximum: " + max);
+        Collections.sort(result);
+        return result;
+    }
+    public String randString() {
+        char[] alphabets = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+        Random r = new Random();
+        char[] tempArray = new char[5];
+        for (int i = 0; i < 5; i++) {
+            tempArray[i] = alphabets[r.nextInt(26)];
+        }
+        String result = new String(tempArray);
+        return result;
+    }
     public static void main(String[] args) {
         PuzzleJava puzzleJava = new PuzzleJava();
         //
@@ -54,5 +94,11 @@ public class PuzzleJava {
             Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
         );
         puzzleJava.displayChar(alphabets);
+        //
+        System.out.println(Arrays.toString(puzzleJava.randomTenNum()));
+        //
+        System.out.println(puzzleJava.randomSortedTenNum());
+        //
+        System.out.println(puzzleJava.randString());
     }
 }
